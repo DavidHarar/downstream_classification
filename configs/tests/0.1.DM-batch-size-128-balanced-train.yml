@@ -1,0 +1,19 @@
+config:
+    # general
+    seed: 123
+    metadata_file_path: './data/combined_data/metadata_sample_for_testing_balanced_by_DM.csv'
+    data_folder_path: './data/individual-signals/'
+    fillna: 0
+    # training
+    batch_size: 128
+    n_epochs: 30
+    # architecture
+    targets: ['DM']
+    input_dimension: 12
+    hidden_dimmension:  32           # d_model (int) – the number of expected features in the input (required)???
+    attention_heads: 4             # number of attention heads, if None then d_model//64
+    encoder_number_of_layers: 4
+    dropout: 0.4
+    clip: 1
+    positional_encodings: False
+    saving_path: './models/exp1'

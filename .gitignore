@@ -4,3 +4,4 @@
 *.atr
 *.hea
 *.pt
+*pyc
