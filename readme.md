@@ -13,3 +13,6 @@ This folder contains the data, code and models for the upstream task in `project
 - data: Data folder
 	- raw: The original, immutable data dump.
 	- processed: The final, canonical data sets for modeling.
+
+
+# We go with V4
