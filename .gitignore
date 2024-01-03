@@ -4,4 +4,6 @@
 *.atr
 *.hea
 *.pt
-*pyc
+*.pyc
+*.xws
+*/mit-bih/*
