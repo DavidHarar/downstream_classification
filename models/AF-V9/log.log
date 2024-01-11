@@ -312,3 +312,130 @@
 2024-01-10 22:21 - INFO - Evaluating model based on: rocauc
 2024-01-10 22:21 - INFO - Training..
 
+2024-01-10 22:27 - INFO - ---------------------------------------------
+2024-01-10 22:27 - INFO - Epoch: 01 | Time: 6m 13s
+2024-01-10 22:27 - INFO - 	 New best val_rocauc loss was found, current best value is 0.58605
+2024-01-10 22:27 - INFO - 	 Train Loss: 0.571
+2024-01-10 22:27 - INFO - 	 Val. Loss: 0.548
+2024-01-10 22:27 - INFO - 	 ROC-AUC: 0.586
+2024-01-10 22:27 - INFO - 	 PR-AUC: 0.320
+2024-01-10 22:27 - INFO - 	 Recall for 0.4 precision: 0.133
+2024-01-10 22:27 - INFO - 	 Best Val. Loss: 0.548
+2024-01-10 22:27 - INFO - 	 Best ROC-AUC: 0.586
+2024-01-10 22:27 - INFO - 	 Best PR-AUC: 0.320
+2024-01-10 22:27 - INFO - 	 Best Recall for 0.4 precision: 0.133
+2024-01-10 22:27 - INFO - ---------------------------------------------
+2024-01-10 22:34 - INFO - ---------------------------------------------
+2024-01-10 22:34 - INFO - Epoch: 02 | Time: 6m 15s
+2024-01-10 22:34 - INFO - 	 New best val_rocauc loss was found, current best value is 0.69999
+2024-01-10 22:34 - INFO - 	 Train Loss: 0.533
+2024-01-10 22:34 - INFO - 	 Val. Loss: 0.510
+2024-01-10 22:34 - INFO - 	 ROC-AUC: 0.700
+2024-01-10 22:34 - INFO - 	 PR-AUC: 0.424
+2024-01-10 22:34 - INFO - 	 Recall for 0.4 precision: 0.549
+2024-01-10 22:34 - INFO - 	 Best Val. Loss: 0.510
+2024-01-10 22:34 - INFO - 	 Best ROC-AUC: 0.700
+2024-01-10 22:34 - INFO - 	 Best PR-AUC: 0.424
+2024-01-10 22:34 - INFO - 	 Best Recall for 0.4 precision: 0.549
+2024-01-10 22:34 - INFO - ---------------------------------------------
+2024-01-10 22:39 - INFO - ---------------------------------------------
+2024-01-10 22:39 - INFO - Epoch: 03 | Time: 5m 53s
+2024-01-10 22:39 - INFO - 	 New best val_rocauc loss was found, current best value is 0.7145
+2024-01-10 22:39 - INFO - 	 Train Loss: 0.505
+2024-01-10 22:39 - INFO - 	 Val. Loss: 0.502
+2024-01-10 22:39 - INFO - 	 ROC-AUC: 0.714
+2024-01-10 22:39 - INFO - 	 PR-AUC: 0.439
+2024-01-10 22:39 - INFO - 	 Recall for 0.4 precision: 0.598
+2024-01-10 22:39 - INFO - 	 Best Val. Loss: 0.502
+2024-01-10 22:39 - INFO - 	 Best ROC-AUC: 0.714
+2024-01-10 22:39 - INFO - 	 Best PR-AUC: 0.439
+2024-01-10 22:39 - INFO - 	 Best Recall for 0.4 precision: 0.598
+2024-01-10 22:39 - INFO - ---------------------------------------------
+2024-01-10 22:45 - INFO - ---------------------------------------------
+2024-01-10 22:45 - INFO - Epoch: 04 | Time: 5m 50s
+2024-01-10 22:45 - INFO - 	 New best val_rocauc loss was found, current best value is 0.71759
+2024-01-10 22:45 - INFO - 	 Train Loss: 0.496
+2024-01-10 22:45 - INFO - 	 Val. Loss: 0.500
+2024-01-10 22:45 - INFO - 	 ROC-AUC: 0.718
+2024-01-10 22:45 - INFO - 	 PR-AUC: 0.435
+2024-01-10 22:45 - INFO - 	 Recall for 0.4 precision: 0.609
+2024-01-10 22:45 - INFO - 	 Best Val. Loss: 0.500
+2024-01-10 22:45 - INFO - 	 Best ROC-AUC: 0.718
+2024-01-10 22:45 - INFO - 	 Best PR-AUC: 0.439
+2024-01-10 22:45 - INFO - 	 Best Recall for 0.4 precision: 0.609
+2024-01-10 22:45 - INFO - ---------------------------------------------
+2024-01-10 22:50 - INFO - ---------------------------------------------
+2024-01-10 22:50 - INFO - Epoch: 05 | Time: 5m 0s
+2024-01-10 22:50 - INFO - 	 New best val_rocauc loss was found, current best value is 0.72104
+2024-01-10 22:50 - INFO - 	 Train Loss: 0.491
+2024-01-10 22:50 - INFO - 	 Val. Loss: 0.498
+2024-01-10 22:50 - INFO - 	 ROC-AUC: 0.721
+2024-01-10 22:50 - INFO - 	 PR-AUC: 0.434
+2024-01-10 22:50 - INFO - 	 Recall for 0.4 precision: 0.632
+2024-01-10 22:50 - INFO - 	 Best Val. Loss: 0.498
+2024-01-10 22:50 - INFO - 	 Best ROC-AUC: 0.721
+2024-01-10 22:50 - INFO - 	 Best PR-AUC: 0.439
+2024-01-10 22:50 - INFO - 	 Best Recall for 0.4 precision: 0.632
+2024-01-10 22:50 - INFO - ---------------------------------------------
+2024-01-10 22:52 - INFO - ---------------------------------------------
+2024-01-10 22:52 - INFO - Epoch: 06 | Time: 1m 13s
+2024-01-10 22:52 - INFO - 	 Train Loss: 0.489
+2024-01-10 22:52 - INFO - 	 Val. Loss: 0.499
+2024-01-10 22:52 - INFO - 	 ROC-AUC: 0.720
+2024-01-10 22:52 - INFO - 	 PR-AUC: 0.432
+2024-01-10 22:52 - INFO - 	 Recall for 0.4 precision: 0.619
+2024-01-10 22:52 - INFO - 	 Best Val. Loss: 0.498
+2024-01-10 22:52 - INFO - 	 Best ROC-AUC: 0.721
+2024-01-10 22:52 - INFO - 	 Best PR-AUC: 0.439
+2024-01-10 22:52 - INFO - 	 Best Recall for 0.4 precision: 0.632
+2024-01-10 22:52 - INFO - ---------------------------------------------
+2024-01-10 22:55 - INFO - ---------------------------------------------
+2024-01-10 22:55 - INFO - Epoch: 07 | Time: 3m 36s
+2024-01-10 22:55 - INFO - 	 New best val_rocauc loss was found, current best value is 0.72494
+2024-01-10 22:55 - INFO - 	 Train Loss: 0.486
+2024-01-10 22:55 - INFO - 	 Val. Loss: 0.500
+2024-01-10 22:55 - INFO - 	 ROC-AUC: 0.725
+2024-01-10 22:55 - INFO - 	 PR-AUC: 0.438
+2024-01-10 22:55 - INFO - 	 Recall for 0.4 precision: 0.638
+2024-01-10 22:55 - INFO - 	 Best Val. Loss: 0.498
+2024-01-10 22:55 - INFO - 	 Best ROC-AUC: 0.725
+2024-01-10 22:55 - INFO - 	 Best PR-AUC: 0.439
+2024-01-10 22:55 - INFO - 	 Best Recall for 0.4 precision: 0.638
+2024-01-10 22:55 - INFO - ---------------------------------------------
+2024-01-10 22:57 - INFO - ---------------------------------------------
+2024-01-10 22:57 - INFO - Epoch: 08 | Time: 1m 35s
+2024-01-10 22:57 - INFO - 	 New best val_rocauc loss was found, current best value is 0.72783
+2024-01-10 22:57 - INFO - 	 Train Loss: 0.485
+2024-01-10 22:57 - INFO - 	 Val. Loss: 0.495
+2024-01-10 22:57 - INFO - 	 ROC-AUC: 0.728
+2024-01-10 22:57 - INFO - 	 PR-AUC: 0.445
+2024-01-10 22:57 - INFO - 	 Recall for 0.4 precision: 0.653
+2024-01-10 22:57 - INFO - 	 Best Val. Loss: 0.495
+2024-01-10 22:57 - INFO - 	 Best ROC-AUC: 0.728
+2024-01-10 22:57 - INFO - 	 Best PR-AUC: 0.445
+2024-01-10 22:57 - INFO - 	 Best Recall for 0.4 precision: 0.653
+2024-01-10 22:57 - INFO - ---------------------------------------------
+2024-01-10 22:58 - INFO - ---------------------------------------------
+2024-01-10 22:58 - INFO - Epoch: 09 | Time: 1m 16s
+2024-01-10 22:58 - INFO - 	 Train Loss: 0.483
+2024-01-10 22:58 - INFO - 	 Val. Loss: 0.496
+2024-01-10 22:58 - INFO - 	 ROC-AUC: 0.725
+2024-01-10 22:58 - INFO - 	 PR-AUC: 0.439
+2024-01-10 22:58 - INFO - 	 Recall for 0.4 precision: 0.626
+2024-01-10 22:58 - INFO - 	 Best Val. Loss: 0.495
+2024-01-10 22:58 - INFO - 	 Best ROC-AUC: 0.728
+2024-01-10 22:58 - INFO - 	 Best PR-AUC: 0.445
+2024-01-10 22:58 - INFO - 	 Best Recall for 0.4 precision: 0.653
+2024-01-10 22:58 - INFO - ---------------------------------------------
+2024-01-10 22:59 - INFO - ---------------------------------------------
+2024-01-10 22:59 - INFO - Epoch: 10 | Time: 1m 6s
+2024-01-10 22:59 - INFO - 	 Train Loss: 0.483
+2024-01-10 22:59 - INFO - 	 Val. Loss: 0.495
+2024-01-10 22:59 - INFO - 	 ROC-AUC: 0.727
+2024-01-10 22:59 - INFO - 	 PR-AUC: 0.443
+2024-01-10 22:59 - INFO - 	 Recall for 0.4 precision: 0.646
+2024-01-10 22:59 - INFO - 	 Best Val. Loss: 0.495
+2024-01-10 22:59 - INFO - 	 Best ROC-AUC: 0.728
+2024-01-10 22:59 - INFO - 	 Best PR-AUC: 0.445
+2024-01-10 22:59 - INFO - 	 Best Recall for 0.4 precision: 0.653
+2024-01-10 22:59 - INFO - ---------------------------------------------
