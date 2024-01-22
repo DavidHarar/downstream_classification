@@ -48,6 +48,8 @@ def trainer(seed,
             patience=np.inf,
             loss_function_weight = None,
             continue_training=False,
+
+            check_on_test=False,
          ):
     """
     params:
@@ -104,6 +106,17 @@ def trainer(seed,
         batch_size=batch_size,
         shuffle = True
     )
+
+    test_generator = DataGenerator(
+        data_folder_path=data_folder_path,
+        metadata_file_path=metadata_file_path,
+        targets=targets,
+        sample='test',
+        seed=seed,
+        batch_size=batch_size,
+        shuffle = True
+    )
+
 
     # create a model
     if depth == 1:
@@ -173,6 +186,14 @@ def trainer(seed,
                               device                              
                               )
         
+        # test
+        if check_on_test:
+            test_loss, y_test, y_test_pred = evaluate_epoch(model, 
+                                test_generator, 
+                                criterion, 
+                                device
+                                )
+
         # store losses
         losses['train'].append(train_loss)
         losses['validation'].append(valid_loss)
@@ -184,6 +205,9 @@ def trainer(seed,
         y_valication_prediction = pd.DataFrame({'y_val': y_val,
                                                'y_val_pred':y_val_pred})
         
+        if check_on_test:
+            y_test_prediction = pd.DataFrame({'y_test': y_test,
+                                                'y_test_pred':y_test_pred})
 
 
         # save loss
@@ -198,6 +222,10 @@ def trainer(seed,
         aucpr  = PRAUC(y_val, y_val_pred)
         rocauc = ROCAUC(y_val, y_val_pred)
         recall_for_precision, threshold = MaxRecall_for_MinPrecision(y_val, y_val_pred, min_precision=0.4)
+
+        if check_on_test:
+            aucpr_test  = PRAUC(y_test, y_test_pred)
+            rocauc_test = ROCAUC(y_test, y_test_pred)
 
 
         # patience
@@ -286,6 +314,10 @@ def trainer(seed,
         # update best values
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
+            
+            if check_on_test:
+                best_test_loss = test_loss
+            
             # save if val_loss is criterion for saving
             if eval_metric == 'loss':
                 if model_saving_path:
@@ -293,6 +325,10 @@ def trainer(seed,
 
         if aucpr > best_aucpr:
             best_aucpr = aucpr
+
+            if check_on_test:
+                best_test_aucpr = aucpr_test
+            
             # save if val_loss is criterion for saving
             if eval_metric == 'aucpr':
                 if model_saving_path:
@@ -300,6 +336,10 @@ def trainer(seed,
 
         if rocauc > best_rocauc:
             best_rocauc = rocauc
+
+            if check_on_test:
+                best_test_rocauc = rocauc_test
+
             # save if val_loss is criterion for saving
             if eval_metric == 'rocauc':
                 if model_saving_path:
@@ -343,6 +383,11 @@ def trainer(seed,
         logging.info(f'\t Best Val. Loss: {best_valid_loss:.3f}')
         logging.info(f'\t Best ROC-AUC: {best_rocauc:.3f}')
         logging.info(f'\t Best PR-AUC: {best_aucpr:.3f}')
+        
+        if check_on_test:
+            logging.info(f'\t Test-ROC-AUC under Best Validation ROC-AUC: {best_test_rocauc:.3f}')
+            logging.info(f'\t Test-PR-AUC under Best Validation Best PR-AUC: {best_test_aucpr:.3f}')
+        
         logging.info(f'\t Best Recall for 0.4 precision: {best_recall_for_precision:.3f}')
         logging.info('-'*45)
     
@@ -385,8 +430,13 @@ def trainer(seed,
     )
 
     logging.shutdown()
+    
+    if check_on_test:
+        return {'validation-roc-auc': best_rocauc, 'validation-auc-pr': best_aucpr, 'test-roc-auc': best_test_rocauc, 'test-auc-pr': best_test_aucpr}
 
-    return best_aucpr, rocauc_given_best_aucpr
+    else:
+        return {'roc-auc': best_rocauc, 'auc-pr': best_aucpr}
+
 
 
 
