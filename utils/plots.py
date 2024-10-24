@@ -139,31 +139,32 @@ def post_reg_analysis(data, y_true_column, y_pred_column, saving_path):
     # PR-Curve
     plot_prc(data[y_pred_column], data[y_true_column], saving_path)
 
-    # preprocessing for scores plots    
-    data['age_in_years'] = np.round(data['age_days']/365)
-    data['age_window'] = pd.cut(data['age_in_years'], bins = [0,50,55,60,65,70,75,80,85,90,95,110,np.inf])
-    data['time_until_death_window'] = pd.cut(data['days_until_approximate_death'], bins=[0,20,100,250,500,1000,2000,3000,4000,np.inf])
+    # preprocessing for scores plots
+    if not external_data:
+        data['age_in_years'] = np.round(data['age_days']/365)
+        data['age_window'] = pd.cut(data['age_in_years'], bins = [0,50,55,60,65,70,75,80,85,90,95,110,np.inf])
+        data['time_until_death_window'] = pd.cut(data['days_until_approximate_death'], bins=[0,20,100,250,500,1000,2000,3000,4000,np.inf])
     
-    # Average Scores per age window
-    sns.boxplot(data = data, y = y_pred_column, x = 'age_window',showfliers = False, color='grey')
-    plt.xticks(rotation = 90)
-    plt.savefig(f'{saving_path}/avg_score_per_age_window.jpg')
-    plt.clf()
+        # Average Scores per age window
+        sns.boxplot(data = data, y = y_pred_column, x = 'age_window',showfliers = False, color='grey')
+        plt.xticks(rotation = 90)
+        plt.savefig(f'{saving_path}/avg_score_per_age_window.jpg')
+        plt.clf()
 
-    # Scores averages per time-until-death
-    sns.boxplot(data = data, y = y_pred_column, x = 'time_until_death_window',showfliers = False, color='grey')
-    plt.xticks(rotation = 90)
-    plt.savefig(f'{saving_path}/scores_boxes_time_until_death_window.jpg')
-    plt.clf()
+        # Scores averages per time-until-death
+        sns.boxplot(data = data, y = y_pred_column, x = 'time_until_death_window',showfliers = False, color='grey')
+        plt.xticks(rotation = 90)
+        plt.savefig(f'{saving_path}/scores_boxes_time_until_death_window.jpg')
+        plt.clf()
 
-    # By target
-    sns.boxplot(data = data, y = y_pred_column, x = y_true_column, showfliers = False, color='grey')
-    plt.xticks(rotation = 90)
-    plt.savefig(f'{saving_path}/scores_boxes_by_target.jpg')
-    plt.clf()
+        # By target
+        sns.boxplot(data = data, y = y_pred_column, x = y_true_column, showfliers = False, color='grey')
+        plt.xticks(rotation = 90)
+        plt.savefig(f'{saving_path}/scores_boxes_by_target.jpg')
+        plt.clf()
 
-    # Scores per age wrt target
-    sns.boxplot(data = data, y = y_pred_column, x = 'age_window', hue = y_true_column, showfliers = False, color='grey')
-    plt.xticks(rotation = 90)
-    plt.savefig(f'{saving_path}/scores_boxes_by_age_window_hued_target.jpg')
-    plt.clf()
+        # Scores per age wrt target
+        sns.boxplot(data = data, y = y_pred_column, x = 'age_window', hue = y_true_column, showfliers = False, color='grey')
+        plt.xticks(rotation = 90)
+        plt.savefig(f'{saving_path}/scores_boxes_by_age_window_hued_target.jpg')
+        plt.clf()

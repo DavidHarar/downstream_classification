@@ -10,7 +10,7 @@ import random
 import time
 
 
-from dataloader.DataGenerator import DataGenerator
+from dataloader.DataGenerator import DataGenerator, DataGenerator_ptb
 from modeling.Transformer import TransformerEncoderDownstream
 from modeling.Inception import *
 
@@ -50,6 +50,8 @@ def trainer(seed,
             continue_training=False,
 
             check_on_test=False,
+            internal_data=True,
+            channels_to_turn_off = 0
          ):
     """
     params:
@@ -87,36 +89,69 @@ def trainer(seed,
     logging.info(f'Training using device: {device}')
 
     logging.info(f'Creating generators')
-    train_generator = DataGenerator(
-        data_folder_path=data_folder_path,
-        metadata_file_path=metadata_file_path,
-        targets=targets,
-        sample='train',
-        seed=seed,
-        batch_size=batch_size,
-        shuffle = True
-    )
+    if internal_data:
+        train_generator = DataGenerator(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='train',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True
+        )
 
-    validation_generator = DataGenerator(
-        data_folder_path=data_folder_path,
-        metadata_file_path=metadata_file_path,
-        targets=targets,
-        sample='validation',
-        seed=seed,
-        batch_size=batch_size,
-        shuffle = True
-    )
+        validation_generator = DataGenerator(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='validation',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True
+        )
 
-    test_generator = DataGenerator(
-        data_folder_path=data_folder_path,
-        metadata_file_path=metadata_file_path,
-        targets=targets,
-        sample='test',
-        seed=seed,
-        batch_size=batch_size,
-        shuffle = True
-    )
+        test_generator = DataGenerator(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='test',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True
+        )
+    else:
+        train_generator = DataGenerator_ptb(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='train',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True,
+            channels_to_turn_off = channels_to_turn_off
+        )
 
+        validation_generator = DataGenerator_ptb(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='validation',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True,
+            channels_to_turn_off = channels_to_turn_off
+        )
+
+        test_generator = DataGenerator_ptb(
+            data_folder_path=data_folder_path,
+            metadata_file_path=metadata_file_path,
+            targets=targets,
+            sample='test',
+            seed=seed,
+            batch_size=batch_size,
+            shuffle = True,
+            channels_to_turn_off = channels_to_turn_off
+        )
 
     # create a model
     if depth == 1:
@@ -259,8 +294,8 @@ def trainer(seed,
             if valid_loss < best_valid_loss:
                 if model_saving_path is not None:
                     fig, axs = plt.subplots(1, 2, figsize = (10,3))
-                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0])
-                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1])
+                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0],bins=150)
+                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1],bins=150)
                     axs[0].set_title('Scores Distribution on the Training Set')
                     axs[1].set_title('Scores Distribution on the Validation Set')
                     axs[0].axvline(threshold, c='r')
@@ -273,8 +308,8 @@ def trainer(seed,
             if aucpr > best_aucpr:
                 if model_saving_path is not None:
                     fig, axs = plt.subplots(1, 2, figsize = (10,3))
-                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0])
-                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1])
+                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0],bins=150)
+                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1],bins=150)
                     axs[0].set_title('Scores Distribution on the Training Set')
                     axs[1].set_title('Scores Distribution on the Validation Set')
                     axs[0].axvline(threshold, c='r')
@@ -287,8 +322,8 @@ def trainer(seed,
             if rocauc > best_rocauc:
                 if model_saving_path is not None:
                     fig, axs = plt.subplots(1, 2, figsize = (10,3))
-                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0])
-                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1])
+                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0],bins=150)
+                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1],bins=150)
                     axs[0].set_title('Scores Distribution on the Training Set')
                     axs[1].set_title('Scores Distribution on the Validation Set')
                     axs[0].axvline(threshold, c='r')
@@ -301,8 +336,8 @@ def trainer(seed,
             if recall_for_precision > best_recall_for_precision:
                 if model_saving_path is not None:
                     fig, axs = plt.subplots(1, 2, figsize = (10,3))
-                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0])
-                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1])
+                    sns.histplot(data = y_train_prediction, x = 'y_train_pred', hue = 'y_train', common_norm=False, stat='probability', ax=axs[0],bins=150)
+                    sns.histplot(data = y_valication_prediction, x = 'y_val_pred', hue = 'y_val', common_norm=False, stat='probability', ax=axs[1],bins=150)
                     axs[0].set_title('Scores Distribution on the Training Set')
                     axs[1].set_title('Scores Distribution on the Validation Set')
                     axs[0].axvline(threshold, c='r')
@@ -422,12 +457,14 @@ def trainer(seed,
         data_path=data_folder_path,
     )
     validation_data['y_pred'] = predictions
-    post_reg_analysis(
-        data = validation_data,
-        y_true_column=target_str,
-        y_pred_column='y_pred',
-        saving_path=model_saving_path
-    )
+    
+    if internal_data:
+        post_reg_analysis(
+            data = validation_data,
+            y_true_column=target_str,
+            y_pred_column='y_pred',
+            saving_path=model_saving_path
+        )
 
     logging.shutdown()
     
