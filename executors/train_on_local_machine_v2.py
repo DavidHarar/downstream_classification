@@ -356,7 +356,7 @@ def trainer(seed,
             # save if val_loss is criterion for saving
             if eval_metric == 'loss':
                 if model_saving_path:
-                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_loss.pt')
+                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_loss_seed_{seed}.pt')
 
         if aucpr > best_aucpr:
             best_aucpr = aucpr
@@ -367,7 +367,7 @@ def trainer(seed,
             # save if val_loss is criterion for saving
             if eval_metric == 'aucpr':
                 if model_saving_path:
-                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_aucpr.pt')
+                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_aucpr_seed_{seed}.pt')
 
         if rocauc > best_rocauc:
             best_rocauc = rocauc
@@ -378,14 +378,14 @@ def trainer(seed,
             # save if val_loss is criterion for saving
             if eval_metric == 'rocauc':
                 if model_saving_path:
-                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_rocauc.pt')
+                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_rocauc_seed_{seed}.pt')
 
         if recall_for_precision > best_recall_for_precision:
             best_recall_for_precision = recall_for_precision
             # save if val_loss is criterion for saving
             if eval_metric == 'recall_for_precision':
                 if model_saving_path:
-                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_recall_for_precision.pt')
+                    torch.save(model.state_dict(), f'{model_saving_path}/model_val_recall_for_precision_seed_{seed}.pt')
 
         if eval_metric == 'recall_for_precision':
             if recall_for_precision == best_recall_for_precision:
@@ -432,13 +432,13 @@ def trainer(seed,
     else:
         best_model = DownstreamInceptionResnet(dropout, scale, depth, num_inputs=12).to(device)
     if eval_metric == 'recall_for_precision':
-        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_recall_for_precision.pt'))
+        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_recall_for_precision_seed_{seed}.pt'))
     if eval_metric == 'aucpr':
-        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_aucpr.pt'))
+        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_aucpr_seed_{seed}.pt'))
     if eval_metric == 'rocauc':
-        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_rocauc.pt'))
+        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_rocauc_seed_{seed}.pt'))
     if eval_metric == 'loss':
-        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_loss.pt'))
+        best_model.load_state_dict(torch.load(f'{model_saving_path}/model_val_loss_seed_{seed}.pt'))
 
     # save additional plots
     validation_data = pd.read_csv(metadata_file_path,index_col=0)
