@@ -40,6 +40,7 @@ def trainer(seed,
             batch_size, 
             n_epochs,
             model_saving_path,
+            predefined_device = None,
             # model type
             eval_metric = 'loss',
             weight_decay = 0,
@@ -84,8 +85,10 @@ def trainer(seed,
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
-    
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    if predefined_device is None:
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    else:
+        device = predefined_device
     logging.info(f'Training using device: {device}')
 
     logging.info(f'Creating generators')
